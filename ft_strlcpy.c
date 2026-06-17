@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-t_ulong	ft_strlcpy(char *dst, const char *src, t_ulong size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	const char	*ssrc = src;
-	t_ulong		left;
+	size_t		left;
 
 	left = size;
 	if (left != 0)

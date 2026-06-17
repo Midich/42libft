@@ -13,10 +13,10 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	*ft_calloc(t_ulong nmemb, t_ulong size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	t_ulong	to_allocate;
+	size_t	to_allocate;
 
 	if (!nmemb || !size)
 		return (malloc(1));

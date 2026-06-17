@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static t_ulong	ft_isspace(const char c)
+static int	ft_isspace(const char c)
 {
 	return ((c >= 9 && c <= 13) || c == 32);
 }
