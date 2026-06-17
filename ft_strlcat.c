@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/17 14:57:18 by msowinsk          #+#    #+#             */
+/*   Updated: 2026/06/17 16:23:55 by msowinsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+t_ulong	ft_strlcat(char *dst, const char *src, t_ulong size)
+{
+	t_ulong	dst_len;
+	t_ulong	src_len;
+	t_ulong	i;
+
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (dst_len >= size)
+		return (size + src_len);
+	i = 0;
+	while (src[i] && i < (size - dst_len - 1))
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
+}

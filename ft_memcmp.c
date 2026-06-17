@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctype.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 13:18:03 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/16 13:18:12 by msowinsk         ###   ########.fr       */
+/*   Created: 2026/06/17 16:58:53 by msowinsk          #+#    #+#             */
+/*   Updated: 2026/06/17 17:05:05 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_isalnum(int c)
+int	ft_memcmp(const void *s1, const void *s2, t_ulong n)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
-}
+	const unsigned char	*char_s1 = s1;
+	const unsigned char	*char_s2 = s2;
+	int					diff;	
 
-int	ft_isalpha(int c)
-{
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-}
-
-int	ft_isascii(int c)
-{
-	return (c >= 0 && c <= 127);
-}
-
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-int	ft_isprint(int c)
-{
-	return (c >= 32 && c < 127);
+	while (n--)
+	{
+		diff = *(char_s1++) - *(char_s2++);
+		if (diff)
+			return (diff);
+	}
+	return (*char_s1 - *char_s2);
 }
