@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_bzero(void *s, t_ulong n)
+void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*cast_s;
 

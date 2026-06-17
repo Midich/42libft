@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, t_ulong n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	char		*cdest;
 	const char	*csrc = (char *)src;

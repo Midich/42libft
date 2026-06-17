@@ -12,10 +12,10 @@
 
 #include "libft.h"
 //checks whole of little in len first chars of big
-char	*ft_strnstr(const char *big, const char *little, t_ulong len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	const t_ulong	little_len = ft_strlen(little);
-	t_ulong			i;
+	const size_t	little_len = ft_strlen(little);
+	size_t			i;
 
 	if (!(*little))
 		return ((char *)big);
