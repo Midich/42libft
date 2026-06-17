@@ -22,8 +22,8 @@ t_ulong	ft_strlcpy(char *dst, const char *src, t_ulong size)
 	{
 		while (--left)
 		{
-			*dst++ = *src++;
-			if (*src == 0)
+			*dst = *src++;
+			if (*dst++ == 0)
 				break ;
 		}
 	}

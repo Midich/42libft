@@ -24,5 +24,5 @@ int	ft_memcmp(const void *s1, const void *s2, t_ulong n)
 		if (diff)
 			return (diff);
 	}
-	return (*char_s1 - *char_s2);
+	return (0);
 }

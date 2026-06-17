@@ -12,6 +12,11 @@
 
 #include "libft.h"
 
+static t_ulong	ft_isspace(const char c)
+{
+	return ((c >= 9 && c <= 13) || c == 32);
+}
+
 int	ft_atoi(const char *nptr)
 {
 	int	neg;
@@ -19,14 +24,18 @@ int	ft_atoi(const char *nptr)
 
 	acc = 0;
 	neg = 1;
+	while (ft_isspace(*nptr))
+	{
+		nptr++;
+	}
 	if (*nptr == '-' || *nptr == '+')
 	{
 		if (*(nptr++) == '-')
 			neg = -1;
 	}
-	while (*nptr || ft_isdigit(*nptr))
+	while (*nptr && ft_isdigit(*nptr))
 	{
-		acc += *(nptr++) - '0';
+		acc = (acc * 10) + (*(nptr++) - '0');
 	}
 	return (acc * neg);
 }

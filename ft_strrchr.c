@@ -18,12 +18,12 @@ char	*ft_strrchr(const char *s, int c)
 	unsigned char	cc;
 
 	cc = c;
-	while (*p++)
-		;
+	while (*p)
+		p++;
 	while (1)
 	{
 		if (*p == cc)
-			return ((char *)s);
+			return ((char *)p);
 		else if (p == s)
 			return (0);
 		p--;
