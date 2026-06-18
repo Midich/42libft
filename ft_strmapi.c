@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 16:09:30 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/18 13:41:26 by msowinsk         ###   ########.fr       */
+/*   Created: 2026/06/18 16:08:21 by msowinsk          #+#    #+#             */
+/*   Updated: 2026/06/18 16:46:23 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	unsigned char	uc1;
-	unsigned char	uc2;
+	char			*new_str;
+	unsigned int	index;
 
-	if (n == 0)
+	new_str = ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!new_str)
 		return (0);
-	while (n--)
+	index = 0;
+	while (s[index])
 	{
-		uc1 = *s1++;
-		uc2 = *s2++;
-		if (uc1 != uc2)
-		{
-			return (uc1 - uc2);
-		}
-		if (uc1 == 0)
-			return (0);
+		new_str[index] = f(index, s[index]);
+		index++;
 	}
-	return (0);
+	new_str[index] = 0;
+	return (new_str);
 }

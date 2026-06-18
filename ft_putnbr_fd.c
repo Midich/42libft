@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 16:09:30 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/18 13:41:26 by msowinsk         ###   ########.fr       */
+/*   Created: 2026/06/18 16:30:00 by msowinsk          #+#    #+#             */
+/*   Updated: 2026/06/18 16:48:43 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned char	uc1;
-	unsigned char	uc2;
+	char	*str_n;
 
-	if (n == 0)
-		return (0);
-	while (n--)
-	{
-		uc1 = *s1++;
-		uc2 = *s2++;
-		if (uc1 != uc2)
-		{
-			return (uc1 - uc2);
-		}
-		if (uc1 == 0)
-			return (0);
-	}
-	return (0);
+	str_n = ft_itoa(n);
+	write(fd, str_n, ft_strlen(str_n));
 }

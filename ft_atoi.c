@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:46:04 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 18:24:03 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/18 15:43:45 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi(const char *nptr)
 	}
 	while (*nptr && ft_isdigit(*nptr))
 	{
-		acc = (acc * 10) + (*(nptr++) - '0');
+		acc = (acc * 10) + ((*(nptr++) - '0') * neg);
 	}
-	return (acc * neg);
+	return (acc);
 }

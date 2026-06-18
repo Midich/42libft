@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 18:05:04 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 18:14:18 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/18 13:42:12 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (malloc(1));
 	to_allocate = nmemb * size;
 	if (to_allocate / nmemb != size)
-		return 0;
+		return (0);
 	ptr = malloc(to_allocate);
 	if (ptr)
 		ft_bzero(ptr, to_allocate);

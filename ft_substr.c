@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 16:09:30 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/18 13:41:26 by msowinsk         ###   ########.fr       */
+/*   Created: 2026/06/18 13:22:19 by msowinsk          #+#    #+#             */
+/*   Updated: 2026/06/18 13:37:45 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	unsigned char	uc1;
-	unsigned char	uc2;
+	const size_t	s_len = ft_strlen(s);
+	char			*sub;
+	size_t			sub_len;
+	size_t			i;
 
-	if (n == 0)
+	if (start > s_len)
 		return (0);
-	while (n--)
+	sub_len = s_len - start;
+	if (sub_len > len)
+		sub_len = len;
+	sub = malloc(sub_len + 1);
+	if (!sub)
+		return (0);
+	i = 0;
+	while (i < sub_len)
 	{
-		uc1 = *s1++;
-		uc2 = *s2++;
-		if (uc1 != uc2)
-		{
-			return (uc1 - uc2);
-		}
-		if (uc1 == 0)
-			return (0);
+		sub[i] = s[i];
+		i++;
 	}
-	return (0);
+	sub[i] = 0;
+	return (sub);
 }

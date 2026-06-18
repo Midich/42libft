@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 16:09:30 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/18 13:41:26 by msowinsk         ###   ########.fr       */
+/*   Created: 2026/06/18 13:44:59 by msowinsk          #+#    #+#             */
+/*   Updated: 2026/06/18 13:53:21 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	unsigned char	uc1;
-	unsigned char	uc2;
+	const size_t	len = ft_strlen(s1) + ft_strlen(s2);
+	char			*new_str;
+	char			*new_str_start;
 
-	if (n == 0)
+	new_str = malloc(len + 1);
+	if (!new_str)
 		return (0);
-	while (n--)
-	{
-		uc1 = *s1++;
-		uc2 = *s2++;
-		if (uc1 != uc2)
-		{
-			return (uc1 - uc2);
-		}
-		if (uc1 == 0)
-			return (0);
-	}
-	return (0);
+	new_str_start = new_str;
+	while (*s1)
+		*(new_str++) = *(s1++);
+	while (*s2)
+		*(new_str++) = *(s2++);
+	*new_str = 0;
+	return (new_str_start);
 }
