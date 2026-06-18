@@ -20,10 +20,10 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	size_t			sub_len;
 	size_t			i;
 
-	if (start > s_len)
-		return (0);
 	sub_len = s_len - start;
-	if (sub_len > len)
+	if (start >= s_len)
+		sub_len = 0;
+	else if (sub_len > len)
 		sub_len = len;
 	sub = malloc(sub_len + 1);
 	if (!sub)
@@ -31,7 +31,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	i = 0;
 	while (i < sub_len)
 	{
-		sub[i] = s[i];
+		sub[i] = s[i + start];
 		i++;
 	}
 	sub[i] = 0;

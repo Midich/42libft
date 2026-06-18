@@ -11,12 +11,20 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*str_n;
-
-	str_n = ft_itoa(n);
-	write(fd, str_n, ft_strlen(str_n));
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-(n / 10), fd);
+		ft_putchar_fd(-(n % 10) + '0', fd);
+	}
+	else if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd((n % 10) + '0', fd);
+	}
+	else
+		ft_putchar_fd(n + '0', fd);
 }

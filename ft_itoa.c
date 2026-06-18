@@ -19,13 +19,20 @@ static void	get_int_len(int n, size_t *len)
 
 	nn = n / 10;
 	(*len)++;
-	if (n == 0)
+	if (nn == 0)
 	{
 		if (n < 0)
 			(*len)++;
 		return ;
 	}
 	get_int_len(nn, len);
+}
+
+static int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
 char	*ft_itoa(int n)
@@ -45,7 +52,7 @@ char	*ft_itoa(int n)
 	{
 		if (n_str[n_len] == '-')
 			break ;
-		n_str[n_len] = (n % 10) + '0';
+		n_str[n_len] = ft_abs(n % 10) + '0';
 		n /= 10;
 	}
 	return (n_str);
