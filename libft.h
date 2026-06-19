@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 15:32:39 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/19 14:01:35 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/19 16:04:59 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -20,7 +20,7 @@ typedef struct s_list
 }					t_list;
 
 // Part 1
-// ctype functions
+// character classification
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
