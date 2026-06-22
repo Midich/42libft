@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:57:18 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 16:23:55 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/22 17:00:00 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	dst_len;
 	size_t	src_len;
-	size_t	i;
 
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dst_len >= size)
-		return (size + src_len);
-	i = 0;
-	while (src[i] && i < (size - dst_len - 1))
-	{
-		dst[dst_len + i] = src[i];
-		i++;
-	}
-	dst[dst_len + i] = '\0';
+	dst_len = 0;
+	while (dst[dst_len] && dst_len < size)
+		dst_len++;
+	src_len = 0;
+	if (size != 0)
+		while (src[src_len] && (dst_len + src_len) < (size - 1))
+		{
+			dst[dst_len + src_len] = src[src_len];
+			src_len++;
+		}
+	if (dst_len < size)
+		dst[dst_len + src_len] = '\0';
+	while (src[src_len])
+		src_len++;
 	return (dst_len + src_len);
 }

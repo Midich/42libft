@@ -13,15 +13,15 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t n, size_t size)
 {
 	void	*ptr;
 	size_t	to_allocate;
 
-	if (!nmemb || !size)
+	if (!n || !size)
 		return (malloc(1));
-	to_allocate = nmemb * size;
-	if (to_allocate / nmemb != size)
+	to_allocate = n * size;
+	if (to_allocate / n != size)
 		return (0);
 	ptr = malloc(to_allocate);
 	if (ptr)
