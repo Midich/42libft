@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:29:53 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/19 14:10:05 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:43:33 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static t_list	*map(t_list *lst, void *(*f)(void *))
 {
-	void *new_content;
+	void	*new_content;
 
 	new_content = f(lst->content);
 	if (!new_content)

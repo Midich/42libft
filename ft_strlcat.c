@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:57:18 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/22 17:00:00 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:43:10 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		dst_len++;
 	src_len = 0;
 	if (size != 0)
+	{
 		while (src[src_len] && (dst_len + src_len) < (size - 1))
 		{
 			dst[dst_len + src_len] = src[src_len];
 			src_len++;
 		}
+	}
 	if (dst_len < size)
 		dst[dst_len + src_len] = '\0';
 	while (src[src_len])
