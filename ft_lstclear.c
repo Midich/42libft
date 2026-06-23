@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:22:03 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/19 14:07:01 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:39:42 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 
 	if (!lst || !*lst || !del)
 		return ;
-
 	while (*lst)
 	{
 		last = *lst;
