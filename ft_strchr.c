@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 15:48:47 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 16:05:38 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/24 17:32:06 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	unsigned char	cc;
+	unsigned char		cc;
+	const unsigned char	*cs;
 
 	cc = c;
+	cs = (const unsigned char *)s;
 	while (1)
 	{
-		if (*s == cc)
-			return ((char *)s);
-		else if (*s == 0)
+		if (*cs == cc)
+			return ((char *)cs);
+		else if (*cs == 0)
 			return (0);
-		s++;
+		cs++;
 	}
 }

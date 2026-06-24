@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:57:49 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 14:59:32 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/24 17:50:17 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int	ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c | 32);
-	return (c);
+	unsigned char	uc;
+
+	if (c == -1)
+		return (c);
+	uc = c;
+	if (uc >= 'A' && uc <= 'Z')
+		return (uc | 32);
+	return (uc);
 }
