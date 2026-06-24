@@ -23,5 +23,7 @@ int main()
 	/* 12 */ check(ft_strnstr(haystack, "a", 1) == haystack);
 	/* 13 */ check(ft_strnstr("1", "a", 1) == NULL);
 	/* 14 */ check(ft_strnstr("22", "b", 2) == NULL);
+	/* 15 */ check(ft_strnstr("22", "22", 3) != NULL);
+	/* 16 */ check(ft_strnstr(haystack, "", 0) == haystack);
 	printf("\n");
 }
