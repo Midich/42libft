@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int	ft_tolower(int c)
 {
 	unsigned char	uc;
 
-	if (c == -1)
+	if (c == EOF)
 		return (c);
 	uc = c;
 	if (uc >= 'A' && uc <= 'Z')
