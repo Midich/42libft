@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:57:35 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 14:59:17 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/24 17:49:50 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int	ft_toupper(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c & 0x5f);
-	return (c);
+	unsigned char	uc;
+
+	if (c == -1)
+		return (c);
+	uc = c;
+	if (uc >= 'a' && uc <= 'z')
+		return (uc & 0x5f);
+	return (uc);
 }
