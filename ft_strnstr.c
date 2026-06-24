@@ -6,12 +6,12 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:34 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 18:39:50 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/24 15:50:36 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//checks whole of little in len first chars of big
+
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	const size_t	little_len = ft_strlen(little);

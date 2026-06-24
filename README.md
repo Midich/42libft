@@ -126,4 +126,4 @@ To use this library you need to link it during compilation with `-L<path_to_libr
 - [Markdown Guide](https://www.markdownguide.org) for cheatsheet on how to use markdown syntax
 - [Makefile Tutorial](https://makefiletutorial.com/) for tutoral on Makefiles and
 - [GNU website](https://www.gnu.org/software/make/) for documentation
-> AI wasn't used in any way, while making this library
+> AI wasn't used to make this library
