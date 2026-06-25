@@ -113,12 +113,12 @@ static void test_tolowertoupper()
 	
 	for (int c = -128; c <= 255; c++)
 	{
-		expected = tolower(c)? 1 : 0;
+		expected = tolower(c);
 		got = ft_tolower(c);
 		snprintf(smsg, MESSAGE_LEN, "tolower mismatch for c=%i, expected=%i, got=%i", c, expected, got);
 		SOFT_ASSERT(expected == got, smsg);
 
-		expected = toupper(c)? 1 : 0;
+		expected = toupper(c);
 		got = ft_toupper(c);
 		snprintf(smsg, MESSAGE_LEN, "toupper mismatch for c=%i, expected=%i, got=%i", c, expected, got);
 		SOFT_ASSERT(expected == got, smsg);

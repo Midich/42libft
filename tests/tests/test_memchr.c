@@ -1,16 +1,22 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
+#include <string.h>
 
-int main()
-{
-	printf("ft_memchr\t");
-
-	char s[] = {0, 1, 2 ,3 ,4 ,5};
-	/* 1 */ check(ft_memchr(s, 0, 0) == NULL);
-	/* 2 */ check(ft_memchr(s, 0, 1) == s);
-	/* 3 */ check(ft_memchr(s, 2, 3) == s + 2);
-	/* 4 */ check(ft_memchr(s, 6, 6) == NULL);
-	/* 5 */ check(ft_memchr(s, 2 + 256, 3) == s + 2); //Cast check
-	printf("\n");
+int main(){
+    printf("\n=====MEMCHR=====\n");
+    unsigned char buf[64];
+    for (int i = 0; i < 64; i++) buf[i] = i;
+    /* Search various chars and lengths */
+    size_t lens[] = {0, 1, 5, 10, 32, 64};
+    int chars[] = {0, 1, 10, 63, 64, 255, -1, 200};
+    for (size_t li = 0; li < sizeof(lens)/sizeof(lens[0]); li++) {
+        size_t n = lens[li];
+        for (size_t ci = 0; ci < sizeof(chars)/sizeof(chars[0]); ci++) {
+            int c = chars[ci];
+            void *exp = memchr(buf, c, n);
+            void *got = ft_memchr(buf, c, n);
+            SOFT_ASSERT(exp == got, "ft_memchr mismatch");
+        }
+    }
+    print_summary();
 }

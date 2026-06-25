@@ -1,45 +1,80 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-int main()
-{
-	printf("ft_substr\t");
+int main(){
+    printf("\n=====SUBSTR=====\n");
 
-	char * s = ft_substr("tripouille", 0, 42000);
-	/* 1 */ check(!strcmp(s, "tripouille"));
-	/* 2 */ mcheck(s, strlen("tripouille") + 1); free(s);
+    struct {
+        const char *s;
+        unsigned int start;
+        size_t len;
+        const char *expected;
+    } cases[] = {
+        {"hello", 0, 0, ""},
+        {"hello", 0, 1, "h"},
+        {"hello", 0, 5, "hello"},
+        {"hello", 0, 10, "hello"},
+        {"hello", 1, 3, "ell"},
+        {"hello", 1, 0, ""},
+        {"hello", 5, 0, ""},
+        {"hello", 5, 5, ""},          /* start == len -> empty */
+        {"hello", 6, 0, ""},          /* start > len -> empty */
+        {"hello", 6, 5, ""},
+        {"", 0, 0, ""},
+        {"", 0, 5, ""},
+        {"abcdef", 2, 4, "cdef"},
+        {"abcdef", 2, 10, "cdef"},
+        {"abcdef", 6, 0, ""},
+        {"abcdef", 6, 5, ""},
+        {"12345", 0, 3, "123"},
+        {"12345", 3, 2, "45"},
+        {"12345", 3, 0, ""},
+        {"   ", 0, 3, "   "},
+        {"   ", 1, 1, " "},
+        {"   ", 3, 1, ""},
+        {NULL, 0, 0, NULL} /* sentinel */
+    };
 
-	s = ft_substr("tripouille", 1, 1);
-	/* 3 */ check(!strcmp(s, "r"));
-	/* 4 */ mcheck(s, 2); free(s);
+    for (int i = 0; cases[i].s != NULL; i++)
+    {
+        const char *s = cases[i].s;
+        unsigned int start = cases[i].start;
+        size_t len = cases[i].len;
+        const char *exp = cases[i].expected;
 
-	s = ft_substr("tripouille", 100, 1);
-	/* 5 */ check(!strcmp(s, ""));
-	/* 6 */ mcheck(s, 1); free(s);
+        /* Compute expected if not provided */
+        char *expected = NULL;
 
-	char * str = strdup("1");
-	s = ft_substr(str, 42, 42000000);
-	/* 7 */ check(!strcmp(s, ""));
-	/* 8 */ mcheck(s, 1); free(s); free(str);
+            expected = strdup(exp);  /* strdup for consistency, will free later */
 
-	str = strdup("0123456789");
-	s = ft_substr(str, 9, 10);
-	/* 9  mbueno-g */ check(!strcmp(s, "9"));
-	/* 10  mbueno-g */ mcheck(s, 2); free(s); free(str);
+        if (!expected)
+        {
+            SOFT_ASSERT(0, "Failed to allocate expected string");
+            continue;
+        }
 
-	s = ft_substr("42", 0, 0);
-	/* 11  fcaquard */ check(!strcmp(s, ""));
-	/* 12  fcaquard */ mcheck(s, 1); free(s);
+        char *result = ft_substr(s, start, len);
 
-	s = ft_substr("BONJOUR LES HARICOTS !", 8, 14);
-	/* 13  dfarhi */ check(!strcmp(s, "LES HARICOTS !"));
-	/* 14  dfarhi */ mcheck(s, 15); free(s);
+        /* Ensure result is not NULL (allocation should succeed) */
+        SOFT_ASSERT(result != NULL, "ft_substr returned NULL");
 
-	s = ft_substr("test", 1, 2);
-	/* 15  dfarhi */ check(!strcmp(s, "es"));
-	/* 16  dfarhi */ mcheck(s, 3); free(s);
-	printf("\n");
+        /* Compare */
+        char msg[256];
+        snprintf(msg, sizeof(msg), "ft_substr('%s', %u, %zu) mismatch", s, start, len);
+        SOFT_ASSERT(strcmp(result, expected) == 0, msg);
+
+        /* Ensure result is a new allocation */
+        SOFT_ASSERT(result != s, "ft_substr returned original pointer");
+
+        /* Check null-termination */
+        size_t result_len = strlen(result);
+        SOFT_ASSERT(result[result_len] == '\0', "ft_substr missing null terminator");
+
+        /* Free */
+        free(result);
+        free(expected);
+    }
+	print_summary();
 }

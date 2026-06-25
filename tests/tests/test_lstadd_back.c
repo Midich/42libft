@@ -1,36 +1,34 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-void freeList(t_list *head)
-{	if (head)
-		freeList((t_list *)head->next);
-	free(head);
+static t_list *create_node_int(int value) {
+    int *content = malloc(sizeof(int));
+    if (!content) return NULL;
+    *content = value;
+    return ft_lstnew(content);
 }
 
-int main()
-{
-	printf("ft_lstadd_back\t");
+int main(){
+    printf("\n=====LSTADD_BACK=====\n");
+    t_list *list = NULL;
+    t_list *node1 = create_node_int(1);
+    t_list *node2 = create_node_int(2);
+    t_list *node3 = create_node_int(3);
 
-	t_list * l =  NULL; t_list * l2 =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	/* 1 */ check(l->content == (void*)1);
-	/* 2 */ check(l->next == 0);
+    ft_lstadd_back(&list, node1);
+    SOFT_ASSERT(list == node1, "add_back to empty list failed");
+    SOFT_ASSERT(list->next == NULL, "add_back to empty list: next not NULL");
 
-	ft_lstadd_back(&l, ft_lstnew((void*)2));
-	/* 3 */ check(l->content == (void*)1);
-	/* 4 */ check(((t_list *)(l->next))->content == (void*)2);
-	/* 5 */ check(((t_list *)(l->next))->next == 0);
+    ft_lstadd_back(&list, node2);
+    SOFT_ASSERT(list == node1, "add_back changed head");
+    SOFT_ASSERT(list->next == node2, "add_back order wrong");
+    SOFT_ASSERT(list->next->next == NULL, "add_back order wrong");
 
-	ft_lstadd_back(&l2, ft_lstnew((void*)3));
-	ft_lstadd_back(&l2, ft_lstnew((void*)4));
-	ft_lstadd_back(&l, l2);
-	/* 6 */ check(l->content == (void*)1);
-	/* 7 */ check(((t_list *)(l->next))->content == (void*)2);
-	/* 8 */ check(((t_list *)(((t_list *)(l->next))->next))->content == (void*)3);
-	/* 9 */ check(((t_list *)((t_list *)(((t_list *)(l->next))->next))->next)->content == (void*)4);
-	/* 10 */ check(((t_list *)((t_list *)(((t_list *)(l->next))->next))->next)->next == 0);
-	freeList(l);
-	printf("\n");
+    ft_lstadd_back(&list, node3);
+    SOFT_ASSERT(list->next->next == node3, "add_back order wrong");
+    SOFT_ASSERT(list->next->next->next == NULL, "add_back order wrong");
+
+    ft_lstclear(&list, free);
+	print_summary();
 }

@@ -1,15 +1,17 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
-	printf("ft_lstnew\t");
-
-	t_list * l =  ft_lstnew((void*)42);
-	/* 1 */ check(l->content == (void*)42);
-	/* 2 */ check(l->next == 0);
-	/* 3 */ mcheck(l, sizeof(t_list)); free(l);
-	printf("\n");
+int main() {
+    printf("\n=====LSTNEW=====\n");
+    int *content = malloc(sizeof(int));
+    *content = 42;
+    t_list *node = ft_lstnew(content);
+    SOFT_ASSERT(node != NULL, "ft_lstnew returned NULL");
+    SOFT_ASSERT(node->content == content, "ft_lstnew content not set correctly");
+    SOFT_ASSERT(*(int *)node->content == 42, "ft_lstnew content value mismatch");
+    SOFT_ASSERT(node->next == NULL, "ft_lstnew next not NULL");
+    free(node->content);
+    free(node);
+    print_summary();
 }

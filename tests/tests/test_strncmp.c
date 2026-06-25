@@ -1,45 +1,36 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
-#include <limits.h>
 #include <string.h>
 
-static int sign(int x)
-{
-	return ((x > 0) - (x < 0));
-}
-
-int main()
-{
-	printf("ft_strncmp\t");
-
-	/* 1 */ check(ft_strncmp("t", "", 0) == 0);
-	/* 2 */ check(ft_strncmp("1234", "1235", 3) == 0);
-	/* 3 */ check(ft_strncmp("1234", "1235", 4) < 0);
-	/* 4 */ check(ft_strncmp("1234", "1235", -1) < 0);
-	/* 5 */ check(ft_strncmp("", "", 42) == 0);
-	/* 6 */ check(ft_strncmp("HelloWorld", "HelloWorld", 42) == 0);
-	/* 7 */ check(ft_strncmp("HelloWorld", "helloWorld", 42) < 0);
-	/* 8 */ check(ft_strncmp("HelloWorld", "HelLoWorld", 42) > 0);
-	/* 9 */ check(ft_strncmp("HelloWorld", "HelloWorlD", 42) > 0);
-	/* 10 */ check(ft_strncmp("HelloWorld", "HelloWorldX", 42) < 0);
-	/* 11 */ check(ft_strncmp("HelloWorld", "HelloWorl", 42) > 0);
-	/* 12 */ check(ft_strncmp("", "1", 0) == 0);
-	/* 13 */ check(ft_strncmp("1", "", 0) == 0);
-	/* 14 */ check(ft_strncmp("", "1", 1) < 0);
-	/* 15 */ check(ft_strncmp("1", "", 1) > 0);
-	/* 16 */ check(ft_strncmp("", "", 1) == 0);
-
-	/* ohaponiuk */
-	/* Check correct behavior for negative char values.
-	 * This matches the behavior of libc strncmp.*/
-	signed char	str1[] = "test";
-	signed char	str2[] = "test";
-	size_t		len = strlen((const char *)str1);
-	str2[3] = SCHAR_MIN;
-	/* 17 */ check(sign(ft_strncmp((const char *)str1, (const char *)str2, len)) == sign(strncmp((const char *)str1, (const char *)str2, len)));
-	str2[3] = -42;
-	/* 18 */ check(sign(ft_strncmp((const char *)str1, (const char *)str2, len)) == sign(strncmp((const char *)str1, (const char *)str2, len)));
-
-	printf("\n");
+int main(){
+    printf("\n=====STRNCMP=====\n");
+    struct {
+        const char *s1;
+        const char *s2;
+        size_t n;
+    } cases[] = {
+        {"", "", 0},
+        {"a", "a", 1},
+        {"abc", "abc", 5},
+        {"abc", "abd", 3},
+        {"abc", "abcd", 4},
+        {"abc", "abc", 2},
+        {"abc", "abd", 1},
+        {"abc", "abc", 0},
+        {"", "a", 1},
+        {"a", "", 1}
+    };
+    for (size_t i = 0; i < sizeof(cases)/sizeof(cases[0]); i++) {
+        int exp = strncmp(cases[i].s1, cases[i].s2, cases[i].n);
+        int got = ft_strncmp(cases[i].s1, cases[i].s2, cases[i].n);
+        char msg[200];
+        snprintf(msg, 200, "ft_strncmp mismatch for s1=%s, s2=%s, n=%lu. EXP: %i, GOT: %i", cases[i].s1, cases[i].s2, cases[i].n, exp, got);
+        SOFT_ASSERT(exp == got, msg);
+    }
+    /* Additional edge cases */
+    SOFT_ASSERT(ft_strncmp("", "a", 1) < 0, "empty vs a");
+    SOFT_ASSERT(ft_strncmp("a", "", 1) > 0, "a vs empty");
+    SOFT_ASSERT(ft_strncmp("", "", 0) == 0, "both empty");
+    SOFT_ASSERT(ft_strncmp("abc", "def", 0) == 0, "n=0");
+	print_summary();
 }

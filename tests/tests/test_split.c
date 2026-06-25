@@ -1,110 +1,70 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-void freeTab(char * * tab)
-{
-	for (int i = 0; tab[i] != NULL; ++i)
-		free(tab[i]);
-	free(tab);
-}
+int main(){
+    printf("\n=====SPLIT======\n");
 
-int main()
-{
-	printf("ft_split\t");
+    struct {
+        const char *s;
+        char c;
+        const char **expected;
+    } cases[] = {
+        {"", ' ', (const char *[]){NULL}},
+        {"   ", ' ', (const char *[]){NULL}},
+        {"hello", ' ', (const char *[]){ "hello", NULL }},
+        {" hello ", ' ', (const char *[]){ "hello", NULL }},
+        {"  hello  world  ", ' ', (const char *[]){ "hello", "world", NULL }},
+        {"a  b  c", ' ', (const char *[]){ "a", "b", "c", NULL }},
+        {"a:b:c", ':', (const char *[]){ "a", "b", "c", NULL }},
+        {"a::b", ':', (const char *[]){ "a", "b", NULL }},
+        {":a:b:", ':', (const char *[]){ "a", "b", NULL }},
+        {"abc", 'x', (const char *[]){ "abc", NULL }},
+        {"xabcx", 'x', (const char *[]){ "abc", NULL }},
+        {"xxx", 'x', (const char *[]){NULL}},
+        {"a", ' ', (const char *[]){ "a", NULL }},
+        {"a b c d e", ' ', (const char *[]){ "a", "b", "c", "d", "e", NULL }},
+        {NULL, 0, NULL}
+    };
 
-	char * * tab = ft_split("  helloworld  42  ", ' ');
-	/* 1 */ mcheck(tab, sizeof(char *) * 3);
+    for (int i = 0; cases[i].s != NULL; i++)
+    {
+        const char *s = cases[i].s;
+        char c = cases[i].c;
+        const char **exp = cases[i].expected;
 
-	/* 2 */ check(!strcmp(tab[0], "helloworld"));
-	/* 3 */ mcheck(tab[0], strlen("helloworld") + 1);
+        char **result = ft_split(s, c);
 
-	/* 4 */ check(!strcmp(tab[1], "42"));
-	/* 5 */ mcheck(tab[1], strlen("42") + 1);
+        /* 1. Check that result is not NULL (we don't test allocation failure) */
+        SOFT_ASSERT(result != NULL, "ft_split returned NULL");
 
-	/* 6 */ check(tab[2] == NULL);
-	freeTab(tab);
+        /* 2. Count number of strings in result */
+        int count = 0;
+        while (result[count] != NULL)
+            count++;
 
-	tab = ft_split("helloworld", 0);
-	/* 7 */ check(!strcmp(tab[0], "helloworld"));
-	/* 8 */ check(tab[1] == NULL);
-	freeTab(tab);
+        /* 3. Count expected strings */
+        int exp_count = 0;
+        while (exp[exp_count] != NULL)
+            exp_count++;
 
-	tab = ft_split("     ", ' ');
-	/* 9 */ check(tab[0] == NULL);
-	free(tab);
+        /* 4. Compare count */
+        char msg[256];
+        snprintf(msg, sizeof(msg), "split count mismatch for '%s' (delimiter '%c')", s, c);
+        SOFT_ASSERT(count == exp_count, msg);
 
-	char * invalidReadCheck = malloc(1); *invalidReadCheck = 0;
-	tab = ft_split(invalidReadCheck, 0);
-	/* 10 */ check(tab[0] == NULL); free(invalidReadCheck);
-	free(tab);
+        /* 5. Compare each string */
+        for (int j = 0; j < count; j++)
+        {
+            snprintf(msg, sizeof(msg), "string %d mismatch for '%s', result: '%s'", j, s, result[j]);
+            SOFT_ASSERT(strcmp(result[j], exp[j]) == 0, msg);
+        }
 
-	tab = ft_split("chinimala", ' ');
-	/* 11 */ mcheck(tab, sizeof(char *) * 2);
-	/* 12 */ check(!strcmp(tab[0], "chinimala"));
-	/* 13 */ check(tab[1] == NULL);
-	freeTab(tab);
-
-	tab = ft_split("", ' ');
-	/* 14 */ mcheck(tab, sizeof(char *) * 1);
-	/* 15 */ check(tab[0] == NULL);
-	freeTab(tab);
-
-	/* sguerra- */
-	char * splitme = strdup("Tripouille");
-	tab = ft_split(splitme, ' ');
-	/* 16 */ mcheck(tab, sizeof(char *) * 2);
-	/* 17 */ check(!strcmp(tab[0], "Tripouille"));
-	/* 18 */ check(tab[1] == NULL);
-	free(splitme); freeTab(tab);
-
-	splitme = strdup("Tripouille ");
-	tab = ft_split(splitme, ' ');
-	/* 19 */ mcheck(tab, sizeof(char *) * 2);
-	/* 20 */ check(!strcmp(tab[0], "Tripouille"));
-	/* 21 */ check(tab[1] == NULL);
-	free(splitme); freeTab(tab);
-
-	splitme = strdup(" Tripouille");
-	tab = ft_split(splitme, ' ');
-	/* 22 */ mcheck(tab, sizeof(char *) * 2);
-	/* 23 */ check(!strcmp(tab[0], "Tripouille"));
-	/* 24 */ check(tab[1] == NULL);
-	free(splitme); freeTab(tab);
-
-	splitme = strdup(" Tripouille ");
-	tab = ft_split(splitme, ' ');
-	/* 25 */ mcheck(tab, sizeof(char *) * 2);
-	/* 26 */ check(!strcmp(tab[0], "Tripouille"));
-	/* 27 */ mcheck(tab[0], strlen("Tripouille") + 1);
-	/* 28 */ check(tab[1] == NULL);
-	free(splitme); freeTab(tab);
-
-	/* wleite */
-	splitme = strdup("--1-2--3---4----5-----42");
-	tab = ft_split(splitme, '-');
-	/* 29 */ mcheck(tab, sizeof(char *) * 7);
-	/* 30 */ check(!strcmp(tab[0], "1"));
-	/* 31 */ mcheck(tab[0], strlen("1") + 1);
-
-	/* 32 */ check(!strcmp(tab[1], "2"));
-	/* 33 */ mcheck(tab[1], strlen("2") + 1);
-
-	/* 34 */ check(!strcmp(tab[2], "3"));
-	/* 35 */ mcheck(tab[2], strlen("3") + 1);
-
-	/* 36 */ check(!strcmp(tab[3], "4"));
-	/* 37 */ mcheck(tab[3], strlen("4") + 1);
-
-	/* 38 */ check(!strcmp(tab[4], "5"));
-	/* 39 */ mcheck(tab[4], strlen("5") + 1);
-
-	/* 40 */ check(!strcmp(tab[5], "42"));
-	/* 41 */ mcheck(tab[5], strlen("42") + 1);
-
-	/* 42 */ check(tab[6] == NULL);
-	free(splitme); freeTab(tab);
-	printf("\n");
+        /* 6. Free allocated memory */
+        for (int j = 0; j < count; j++)
+            free(result[j]);
+        free(result);
+    }
+	print_summary();
 }

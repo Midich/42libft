@@ -1,24 +1,26 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 
-int main()
-{
-	printf("ft_strrchr\t");
-
-	char s[] = "HelloWorld";
-	char s2[] = "";
-	/* 1 */ check(ft_strrchr(s, 'H') == s);
-	/* 2 */ check(ft_strrchr(s, 'l') == s + 8);
-	/* 3 */ check(ft_strrchr(s, 'd') == s + 9);
-	/* 4 */ check(ft_strrchr(s, 'z') == NULL);
-	/* 5 */ check(ft_strrchr(s, 0) == s + strlen(s));
-	/* 6 */ check(ft_strrchr(s, 'H' + 256) == s);
-	char * empty = (char*)calloc(1, 1);
-	/* 7 */ check(ft_strrchr(empty, 'V') == NULL);
-	free(empty);
-	/* 8 */ check(ft_strrchr(s2, 0) == s2);
-	printf("\n");
+int main(){
+    printf("\n=====STRRCHR=====\n");
+    char *s = "hello world";
+    /* Search for existing chars */
+    char chars[] = {'h', 'e', 'l', 'o', ' ', 'd', 'x', '\0'};
+    for (size_t i = 0; i < sizeof(chars)/sizeof(chars[0]); i++) {
+        int c = chars[i];
+        char *exp = strrchr(s, c);
+        char *got = ft_strrchr(s, c);
+        SOFT_ASSERT(exp == got, "ft_strrchr mismatch");
+		if (got != exp)
+			{
+				printf("got = %s, exp = %s searched = %c\n", got, exp, c);
+				printf("got_ptr = %p, exp_ptr = %p\n", got, exp);
+			}
+    }
+    /* Empty string */
+    const char *empty = "";
+    SOFT_ASSERT(ft_strrchr(empty, 'a') == NULL, "empty string, char not found");
+    SOFT_ASSERT(ft_strrchr(empty, '\0') == (char*)empty, "empty string, null char");
+	print_summary();
 }

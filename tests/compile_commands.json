@@ -1,0 +1,548 @@
+[
+  {
+    "file": "soft_assert.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "soft_assert.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_ctype.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_ctype.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_tolowerupper.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_tolowerupper.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strlen.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strlen.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_memset.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_memset.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_bzero.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_bzero.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_memcpy.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_memcpy.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_memmove.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_memmove.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strlcpy.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strlcpy.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strlcat.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strlcat.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strchr.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strchr.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strrchr.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strrchr.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strncmp.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strncmp.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_memchr.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_memchr.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_memcmp.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_memcmp.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strnstr.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strnstr.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_atoi.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_atoi.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_calloc.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_calloc.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strdup.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strdup.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_substr.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_substr.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strjoin.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strjoin.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strtrim.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strtrim.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_split.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_split.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_itoa.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_itoa.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_strmapi.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_strmapi.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_striteri.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_striteri.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_putchar_fd.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_putchar_fd.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_putstr_fd.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_putstr_fd.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_putendl_fd.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_putendl_fd.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_putnbr_fd.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_putnbr_fd.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstnew.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstnew.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstadd_front.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstadd_front.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstsize.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstsize.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstlast.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstlast.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstadd_back.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstadd_back.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstdelone.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstdelone.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstclear.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstclear.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstiter.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstiter.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  },
+  {
+    "file": "tests/test_lstmap.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Werror=vla",
+      "-I/home/sowy/Pulpit/libft/libft",
+      "tests/test_lstmap.c"
+    ],
+    "directory": "/home/sowy/Pulpit/libft/libft/tests"
+  }
+]

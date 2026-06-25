@@ -1,33 +1,62 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-void
-iter(unsigned int i, char * s) {
-	*s += i;
+static void to_upper_at_index(unsigned int i, char *c)
+{
+    (void)i;
+    if (*c >= 'a' && *c <= 'z')
+        *c = *c - 32;
+}
+
+static void add_index_to_char(unsigned int i, char *c)
+{
+    *c = *c + i;
+}
+
+static void alternate_case(unsigned int i, char *c)
+{
+    if (i % 2 == 0)
+        *c = *c + 1;   /* shift every even index char */
+    else
+        *c = *c - 1;   /* shift every odd index char */
 }
 
 int main()
 {
-	printf("ft_striteri\t");
+    printf("\n=====STRITERI=====\n");
 
-	{
-		char s[] = "";
-		ft_striteri(s, iter);
-		/* 1 */ check(!strcmp(s, ""));
-	}
+    struct {
+        char *s;
+        void (*f)(unsigned int, char *);
+        const char *expected;
+    } cases[] = {
+        {(char *)"", to_upper_at_index, ""},
+        {(char *)"hello", to_upper_at_index, "HELLO"},
+        {(char *)"abc", add_index_to_char, "ace"},
+        {(char *)"abc", alternate_case, "bad"},
+        {NULL, NULL, NULL} /* sentinel */
+    };
 
-	{
-		char s[] = "0";
-		ft_striteri(s, iter);
-		/* 2 */ check(!strcmp(s, "0"));
-	}
+    for (int i = 0; cases[i].s != NULL; i++)
+    {
+        char *copy = strdup(cases[i].s);
+        if (!copy)
+        {
+            SOFT_ASSERT(0, "strdup failed in test");
+            continue;
+        }
 
-	{
-		char s[] = "0000000000";
-		ft_striteri(s, iter);
-		/* 3 */ check(!strcmp(s, "0123456789"));
-	}
-	printf("\n");
+        /* Apply ft_striteri */
+        ft_striteri(copy, cases[i].f);
+
+        /* Check result */
+        char msg[256];
+        snprintf(msg, sizeof(msg), "ft_striteri mismatch for '%s'", cases[i].s);
+        SOFT_ASSERT(strcmp(copy, cases[i].expected) == 0, msg);
+
+        free(copy);
+    }
+	print_summary();
 }

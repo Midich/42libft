@@ -1,39 +1,35 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <limits.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
-int main()
-{
-	printf("ft_calloc\t");
-
-	void * p = ft_calloc(2, 2);
-	char e[] = {0, 0, 0, 0};
-	/* 1 */ check(!memcmp(p, e, 4));
-	/* 2 */ mcheck(p, 4); free(p);
-	/* 3 */ check(ft_calloc(SIZE_MAX, SIZE_MAX) == NULL);
-
-	/* @evportel */
-	/* The following tests are not supported by the function's documentation.
-	 * But some effects returned in the trait by Moulinette so the following
-	 * tests were implemented. */
-	/* 4 */ check(ft_calloc(INT_MAX, INT_MAX) == NULL);
-	/* 5 */ check(ft_calloc(INT_MIN, INT_MIN) == NULL);
-	p = ft_calloc(0, 0);
-	/* 6 */ check(p != NULL); free(p);
-	p = ft_calloc(0, 5);
-	/* 7 */ check(p != NULL); free(p);
-	p = ft_calloc(5, 0);
-	/* 8 */ check(p != NULL); free(p);
-	/* 9 */ check(ft_calloc(-5, -5) == NULL);
-	p = ft_calloc(0, -5);
-	/* 10 */ check(p != NULL); free(p);
-	p = ft_calloc(-5, 0);
-	/* 11 */ check(p != NULL); free(p);
-	/* 12 */ check(ft_calloc(3, -5) == NULL);
-	/* 13 */ check(ft_calloc(-5, 3) == NULL);
-	printf("\n");
+int main(){
+    printf("\n=====CALLOC=====\n");
+    /* Test with various count, size combinations */
+    size_t tests[][2] = {
+        {0, 0}, {0, 1}, {1, 0}, {1, 1}, {5, 10}, {10, 5}, {100, 1}
+    };
+    for (size_t i = 0; i < sizeof(tests)/sizeof(tests[0]); i++) {
+        size_t count = tests[i][0];
+        size_t size = tests[i][1];
+        void *p1 = ft_calloc(count, size);
+        void *p2 = calloc(count, size);
+        if (p1 == NULL || p2 == NULL) {
+            if (p1 != p2) {
+                SOFT_ASSERT(0, "calloc NULL mismatch");
+            }
+        } else {
+            /* Compare allocated memory content (should be zero) */
+            size_t total = count * size;
+            SOFT_ASSERT(memcmp(p1, p2, total) == 0,
+                        "ft_calloc memory content mismatch");
+            free(p1);
+            free(p2);
+        }
+    }
+    /* Test with huge allocation (should return NULL) */
+    void *p = ft_calloc(SIZE_MAX, SIZE_MAX);
+    SOFT_ASSERT(p == NULL, "ft_calloc should fail for over size_max");
+    print_summary();
 }

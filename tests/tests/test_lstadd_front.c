@@ -1,28 +1,33 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-void freeList(t_list *head)
-{
-	if (head)
-		freeList((t_list *)head->next);
-	free(head);
+static t_list *create_node_int(int value) {
+    int *content = malloc(sizeof(int));
+    if (!content) return NULL;
+    *content = value;
+    return ft_lstnew(content);
 }
 
-int main()
-{
-	printf("ft_lstadd_front\t");
+static void delete_int(void *content) {
+    free(content);
+}
 
-	t_list * l =  NULL;
-	ft_lstadd_front(&l, ft_lstnew((void*)1));
-	/* 1 */ check(l->content == (void*)1);
-	/* 2 */ check(l->next == 0);
+int main() {
+    printf("\n=====LSTADD_FRONT=====\n");
+    t_list *list = NULL;
+    t_list *node1 = create_node_int(1);
+    t_list *node2 = create_node_int(2);
 
-	ft_lstadd_front(&l, ft_lstnew((void*)2));
-	/* 3 */ check(l->content == (void*)2);
-	/* 4 */ check(((t_list *)l->next)->content == (void*)1);
-	/* 5 */ check(((t_list *)l->next)->next == 0);
-	freeList(l);
-	printf("\n");
+    ft_lstadd_front(&list, node1);
+    SOFT_ASSERT(list == node1, "add_front to empty list failed");
+    SOFT_ASSERT(list->next == NULL, "add_front to empty list: next not NULL");
+
+    ft_lstadd_front(&list, node2);
+    SOFT_ASSERT(list == node2, "add_front to non-empty list failed");
+    SOFT_ASSERT(list->next == node1, "add_front order wrong");
+    SOFT_ASSERT(list->next->next == NULL, "add_front order wrong");
+
+    ft_lstclear(&list, delete_int);
+	print_summary();
 }

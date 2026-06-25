@@ -1,49 +1,43 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
 #include <string.h>
 
-int main()
-{
-	printf("ft_strlcat\t");
+int main(){
+    printf("\n=====STRLCAT=====\n");
+    char dst1[64], dst2[64];
+    const char *src = "world";
+    size_t sizes[] = {0, 1, 5, 10, 64};
+    const char *init[] = {"", "hello", "hi"};
+    for (size_t ii = 0; ii < sizeof(init)/sizeof(init[0]); ii++) {
+        const char *init_s = init[ii];
+        size_t init_len = strlen(init_s);
+        for (size_t si = 0; si < sizeof(sizes)/sizeof(sizes[0]); si++) {
+            size_t size = sizes[si];
 
-	char dest[30]; memset(dest, 0, 30);
-	char * src = (char *)"AAAAAAAAA";
-	dest[0] = 'B';
-	/* 1 */ check(ft_strlcat(dest, src, 0) == strlen(src) && !strcmp(dest, "B"));
-	dest[0] = 'B';
-	/* 2 */ check(ft_strlcat(dest, src, 1) == 10 && !strcmp(dest, "B"));
-	memset(dest, 'B', 4);
-	/* 3 */ check(ft_strlcat(dest, src, 3) == 3 + strlen(src) && !strcmp(dest, "BBBB"));
-	/* 4 */ check(ft_strlcat(dest, src, 6) == 13 && !strcmp(dest, "BBBBA"));
-	memset(dest, 'C', 5);
-	/* 5 */ check(ft_strlcat(dest, src, -1) == 14 && !strcmp(dest, "CCCCCAAAAAAAAA"));
-	memset(dest, 'C', 15);
-	/* 6 */ check(ft_strlcat(dest, src, 17) == 24 && !strcmp(dest, "CCCCCCCCCCCCCCCA"));
-	memset(dest, 0, 30);
-	/* 7 */ check(ft_strlcat(dest, src, 1) == strlen(src) && !strcmp(dest, ""));
-	memset(dest, 0, 30);
-	memset(dest, '1', 10);
-	/* 8 */ check(ft_strlcat(dest, src, 5) == strlen(src) + 5 && !strcmp(dest, "1111111111"));
-	memset(dest, 0, 30);
-	memset(dest, '1', 10);
-	/* 9 */ check(ft_strlcat(dest, src, 5) == strlen(src) + 5 && !strcmp(dest, "1111111111"));
-	memset(dest, 0, 30);
-	memset(dest, '1', 10);
-	/* 10 */ check(ft_strlcat(dest, "", 15) == 10 && !strcmp(dest, "1111111111"));
-	memset(dest, 0, 30);
-	/* 11 */ check(ft_strlcat(dest, "", 42) == 0 && !strcmp(dest, ""));
-	memset(dest, 0, 30);
-	/* 12 */ check(ft_strlcat(dest, "", 0) == 0 && !strcmp(dest, ""));
-	memset(dest, 0, 30);
-	/* 13 */ check(ft_strlcat(dest, "123", 1) == 3 && !strcmp(dest, ""));
-	memset(dest, 0, 30);
-	/* 14 */ check(ft_strlcat(dest, "123", 2) == 3 && !strcmp(dest, "1"));
-	memset(dest, 0, 30);
-	/* 15 */ check(ft_strlcat(dest, "123", 3) == 3 && !strcmp(dest, "12"));
-	memset(dest, 0, 30);
-	/* 16 */ check(ft_strlcat(dest, "123", 4) == 3 && !strcmp(dest, "123"));
-	memset(dest, 0, 30);
-	/* 17 */ check(ft_strlcat(dest, "123", 0) == 3 && !strcmp(dest, ""));
-	printf("\n");
+            strcpy(dst1, init_s);
+            strcpy(dst2, init_s);
+            size_t ret1 = ft_strlcat(dst1, src, size);
+			size_t ret2 = strlcat(dst2, src, size);
+            SOFT_ASSERT(ret1 == ret2, "ft_strlcat return value");
+			SOFT_ASSERT(memcmp(dst1, dst2, strlen(dst2) + 1) == 0,
+                            "ft_strlcat vs strlcat content");
+            /* Check destination content */
+            if (size > init_len) {
+                /* Should have appended some chars */
+                size_t app_len = size - init_len - 1;
+                if (app_len > strlen(src)) app_len = strlen(src);
+                /* Check that dst1 ends with src prefix */
+                char *pos = dst1 + init_len;
+                SOFT_ASSERT(memcmp(pos, src, app_len) == 0,
+                            "ft_strlcat append content");
+                SOFT_ASSERT(dst1[init_len + app_len] == '\0',
+                            "ft_strlcat null-termination");
+            } else {
+                /* size <= init_len: nothing appended, dst unchanged */
+                SOFT_ASSERT(strcmp(dst1, init_s) == 0,
+                            "ft_strlcat should not modify when size <= init_len");
+            }
+        }
+    }
+    print_summary();
 }

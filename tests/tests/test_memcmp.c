@@ -1,19 +1,23 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
+#include <string.h>
 
-int main()
-{
-	printf("ft_memcmp\t");
-
-	char s[] = {-128, 0, 127, 0};
-	char sCpy[] = {-128, 0, 127, 0};
-	char s2[] = {0, 0, 127, 0};
-	char s3[] = {0, 0, 42, 0};
-	/* 1 */ check(!ft_memcmp(s, sCpy, 4));
-	/* 2 */ check(!ft_memcmp(s, s2, 0));
-	/* 3 */ check(ft_memcmp(s, s2, 1) > 0);
-	/* 4 */ check(ft_memcmp(s2, s, 1) < 0);
-	/* 5 */ check(ft_memcmp(s2, s3, 4) != 0);
-	printf("\n");
+int main(){
+    printf("\n=====MEMCMP=====\n");
+    unsigned char a[64], b[64];
+    for (int i = 0; i < 64; i++) { a[i] = i; b[i] = i; }
+    /* Equal blocks */
+    SOFT_ASSERT(ft_memcmp(a, b, 64) == 0, "memcmp equal");
+    /* Different at position */
+    b[10] = 200;
+    int exp = memcmp(a, b, 64);
+    int got = ft_memcmp(a, b, 64);
+    SOFT_ASSERT((exp > 0 && got > 0) || (exp < 0 && got < 0) || (exp == 0 && got == 0),
+                "memcmp sign mismatch");
+    /* Zero length */
+    SOFT_ASSERT(ft_memcmp(a, b, 0) == 0, "memcmp zero length");
+    /* Compare with n less than difference */
+    SOFT_ASSERT(ft_memcmp(a, b, 10) == 0, "memcmp with n before difference");
+    /* Edge: compare with NULL? Not defined */
+	print_summary();
 }

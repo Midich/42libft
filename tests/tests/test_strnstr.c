@@ -1,29 +1,52 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
+#include <bsd/string.h>
 
-int main()
-{
-	printf("ft_strnstr\t");
 
-	char haystack[30] = "aaabcabcd";
-	char needle[10] = "aabc";
-	char * empty = (char*)"";
-	/* 1 */ check(ft_strnstr(haystack, needle, 0) == 0);
-	/* 2 */ check(ft_strnstr(haystack, needle, -1) == haystack + 1);
-	/* 3 */ check(ft_strnstr(haystack, "a", -1) == haystack);
-	/* 4 */ check(ft_strnstr(haystack, "c", -1) == haystack + 4);
-	/* 5 */ check(ft_strnstr(empty, "", -1) == empty);
-	/* 6 */ check(ft_strnstr(empty, "", 0) == empty);
-	/* 7 */ check(ft_strnstr(empty, "hello", -1) == 0);
-	/* 8 */ check(ft_strnstr(haystack, "aaabc", 5) == haystack);
-	/* 9 */ check(ft_strnstr(empty, "12345", 5) == 0);
-	/* 10 */ check(ft_strnstr(haystack, "abcd", 9) == haystack + 5);
-	/* 11 */ check(ft_strnstr(haystack, "cd", 8) == NULL);
-	/* 12 */ check(ft_strnstr(haystack, "a", 1) == haystack);
-	/* 13 */ check(ft_strnstr("1", "a", 1) == NULL);
-	/* 14 */ check(ft_strnstr("22", "b", 2) == NULL);
-	/* 15 */ check(ft_strnstr("22", "22", 3) != NULL);
-	/* 16 */ check(ft_strnstr(haystack, "", 0) == haystack);
-	printf("\n");
+int main(){
+    printf("\n=====STRNSTR=====\n");
+    struct {
+        const char *haystack;
+        const char *needle;
+        size_t len;
+        const char *expected;  /* expected pointer or NULL */
+    } cases[] = {
+        {"hello world", "world", 11, "world"},
+        {"hello world", "world", 5, NULL},
+        {"hello world", "", 11, "hello world"},  /* empty needle returns haystack */
+        {"", "hello", 0, NULL},
+        {"abc", "abc", 3, "abc"},
+        {"abc", "abc", 2, NULL},
+        {"abc", "b", 3, "bc"},
+        {"abc", "b", 1, NULL},
+        {"abc", "d", 3, NULL},
+        {"aaa", "aa", 3, "aaa"},
+        {"aaab", "aa", 4, "aaab"},
+        {"aaab", "aa", 2, NULL},
+    };
+    for (size_t i = 0; i < sizeof(cases)/sizeof(cases[0]); i++) {
+        const char *hay = cases[i].haystack;
+        const char *nee = cases[i].needle;
+        size_t len = cases[i].len;
+        char *exp = strnstr(hay, nee, len);
+        char *got = ft_strnstr(hay, nee, len);
+        /* Check pointer equality; if both NULL or point to same char */
+        if (exp == NULL) {
+            SOFT_ASSERT(got == NULL, "ft_strnstr should return NULL");
+			if (got != exp)
+			{
+				printf("got = %s, exp = %s len = %d\n", got, exp, (int)len);
+				printf("hay = %s, need = %s\n", hay, nee);
+			}
+        } else {
+            SOFT_ASSERT(got == exp, "ft_strnstr pointer mismatch");
+			if (got != exp)
+			{
+				printf("got = %s, exp = %s len = %d\n", got, exp, (int)len);
+				printf("got_ptr = %p, exp_ptr = %p\n", got, exp);
+				printf("hay = %s, need = %s\n", hay, nee);
+			}
+        }
+    }
+	print_summary();
 }

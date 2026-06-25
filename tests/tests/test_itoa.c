@@ -1,33 +1,66 @@
-#include "../check.h"
+#include "../soft_assert.h"
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
+#include <limits.h>
 #include <stdlib.h>
+#include <string.h>
 
-int main()
-{
-	printf("ft_itoa\t");
+int main(){
+    printf("\n=====ITOA=====\n");
 
-	char * s = ft_itoa(2147483647);
-	/* 1 */ check(!strcmp(s, "2147483647"));
-	/* 2 */ mcheck(s, strlen("2147483647") + 1); free(s);
+    struct {
+        int n;
+        const char *expected;
+    } cases[] = {
+        {0, "0"},
+        {1, "1"},
+        {-1, "-1"},
+        {42, "42"},
+        {-42, "-42"},
+        {123456, "123456"},
+        {-123456, "-123456"},
+        {2147483647, "2147483647"},   /* INT_MAX */
+        {-2147483648, "-2147483648"}, /* INT_MIN */
+        {5, "5"},
+        {-5, "-5"},
+        {10, "10"},
+        {-10, "-10"},
+        {100, "100"},
+        {-100, "-100"}
+    };
 
-	s = ft_itoa(-2147483648);
-	/* 3 */ check(!strcmp(s, "-2147483648"));
-	/* 4 */ mcheck(s, strlen("-2147483648") + 1); free(s);
+    for (size_t i = 0; i < sizeof(cases) / sizeof(cases[0]); i++)
+    {
+        int n = cases[i].n;
+        const char *exp = cases[i].expected;
 
-	s = ft_itoa(0);
-	/* 5 */ check(!strcmp(s, "0"));
-	/* 6 */ mcheck(s, strlen("0") + 1); free(s);
-	s = ft_itoa(1);
-	/* 7 */ check(!strcmp(s, "1"));
-	/* 8 */ mcheck(s, strlen("1") + 1); free(s);
-	s = ft_itoa(-1);
-	/* 9 */ check(!strcmp(s, "-1"));
-	/* 10 */ mcheck(s, strlen("-1") + 1); free(s);
+        char *result = ft_itoa(n);
 
-	s = ft_itoa(42);
-	/* 11 */ check(!strcmp(s, "42"));
-	/* 12 */ mcheck(s, strlen("42") + 1); free(s);
-	printf("\n");
+        /* Ensure result is not NULL (we don't test allocation failure) */
+        SOFT_ASSERT(result != NULL, "ft_itoa returned NULL");
+
+        /* Compare with expected string */
+        char msg[256];
+        snprintf(msg, sizeof(msg), "ft_itoa(%d) mismatch, exp = %s, res = %s", n, exp, result);
+        SOFT_ASSERT(strcmp(result, exp) == 0, msg);
+
+        /* Also test using snprintf for additional safety (optional) */
+        char buffer[64];
+        snprintf(buffer, sizeof(buffer), "%d", n);
+        SOFT_ASSERT(strcmp(result, buffer) == 0, "ft_itoa vs snprintf");
+
+        free(result);
+    }
+
+    /* Additional edge case: test that the string is properly null-terminated */
+    int test_vals[] = {0, -1, INT_MAX, INT_MIN};
+    for (size_t i = 0; i < sizeof(test_vals) / sizeof(test_vals[0]); i++)
+    {
+        char *result = ft_itoa(test_vals[i]);
+        SOFT_ASSERT(result != NULL, "ft_itoa returned NULL");
+        size_t len = strlen(result);
+        /* Check that the last character is '\0' (strlen already does this) */
+        SOFT_ASSERT(result[len] == '\0', "ft_itoa missing null terminator");
+        free(result);
+    }
+	print_summary();
 }

@@ -1,12 +1,23 @@
-#include "../check.h"
-#include "libft.h"
-#include <stdio.h>
+#include "../soft_assert.h"
+#include <libft.h>
+#include <string.h>
 
+#define MLEN 100
 int main()
 {
-	printf("ft_strlen\t");
-	/*1*/check(ft_strlen("") == 0);
-	/*2*/check(ft_strlen("galvanize") == 9);
-	/*3*/check(ft_strlen("a") == 1);
-	printf("\n");
+    printf("\n=====STRLEN=====\n");
+
+    char msg[MLEN];
+
+    int i = 0;
+    char *test_cases[] = {"", "a", "Hello", "Hello beautiful world", "aaaaa", "jod\0soa\0", "\0", 0};
+    while (test_cases[i])
+    {
+        size_t exp = strlen(test_cases[i]);
+        size_t got = ft_strlen(test_cases[i]);
+        snprintf(msg, MLEN, "strlen mismatch in test %i, expected=%lu, got=%lu", i, exp, got);
+        SOFT_ASSERT(exp==got, msg);
+        i++;
+    }
+    print_summary();
 }

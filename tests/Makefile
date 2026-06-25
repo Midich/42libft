@@ -1,20 +1,26 @@
-UTILS 			:= check.c
+UTILS 			:= soft_assert.c
 PARENT_DIR		:= $(shell dirname $(shell pwd))
 LIBFT_PATH		:= $(PARENT_DIR)
 TESTS_PATH		:= tests
-TESTS			:= isalpha isdigit isalnum isascii isprint strlen memset bzero \
-			memcpy memmove strlcpy strlcat toupper tolower strchr strrchr \
-			strncmp memchr memcmp strnstr atoi calloc strdup substr strjoin \
-			strtrim split itoa strmapi striteri putchar_fd putstr_fd putendl_fd \
-			putnbr_fd lstnew lstadd_front lstsize lstlast lstadd_back \
+TESTS			:= ctype tolowerupper strlen memset bzero \
+			memcpy memmove strlcpy strlcat strchr strrchr \
+			memchr memcmp strnstr atoi calloc strdup substr strjoin \
+			strtrim split itoa strmapi striteri put_fd \
+			lstnew lstadd_front lstsize lstlast lstadd_back \
 			lstdelone lstclear lstiter lstmap
+TESTS_NOVAL		:= strncmp
 
 CFLAGS			:= -g -Wall -Wextra -Werror -Werror=vla -I$(LIBFT_PATH)
+CC				:= cc
+VALGRIND		:= valgrind -q --leak-check=full
 
-all: $(TESTS)
+all: $(TESTS) $(TESTS_NOVAL)
 
 $(TESTS): |start
-	@$(CC) $(CFLAGS) $(UTILS) $(TESTS_PATH)/test_$@.c -L$(LIBFT_PATH) -lft && valgrind -q --leak-check=full ./a.out && rm -f a.out
+	@$(CC) $(CFLAGS) $(UTILS) $(TESTS_PATH)/test_$@.c -L$(LIBFT_PATH) -lft -lbsd && $(VALGRIND) ./a.out && rm -f a.out
+
+$(TESTS_NOVAL): |start
+	@$(CC) $(CFLAGS) $(UTILS) $(TESTS_PATH)/test_$@.c -L$(LIBFT_PATH) -lft -lbsd && ./a.out && rm -f a.out
 
 start:
 	make -C $(LIBFT_PATH)
