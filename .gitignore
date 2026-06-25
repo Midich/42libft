@@ -1,3 +1,4 @@
 libft.a
 *.swp*
 *.o
+*.out
