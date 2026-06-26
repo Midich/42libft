@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:52:18 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 16:22:45 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/26 14:07:13 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*cast_s;
+	unsigned char	cast_c;
 
 	cast_s = (unsigned char *)s;
+	cast_c = (unsigned char)c;
 	while (n)
 	{
 		n--;
-		*(cast_s + n) = c;
+		*(cast_s + n) = cast_c;
 	}
 	return (s);
 }

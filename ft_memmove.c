@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:53:57 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 16:22:21 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/26 14:03:32 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	const char	*csrc = src;
-	char		*cdest;
-	const char	*lsrc = src + (n - 1);
-	char		*ldest;
+	const unsigned char	*csrc = src;
+	unsigned char		*cdest;
+	const unsigned char	*lsrc = src + (n - 1);
+	unsigned char		*ldest;
 
 	cdest = dest;
 	ldest = dest + (n - 1);
