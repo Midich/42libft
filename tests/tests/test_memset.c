@@ -13,7 +13,7 @@ int main()
     char msg[MLEN];
     unsigned char buff1[256], buff2[256];
     int sizes[] = {0, 1, 10, 100, 200, 255, 256};
-    int values[] = { 0, 1, 10, 100, 255, 256, -1, 170, 58};
+    int values[] = { 0, 1, 10, 100, 255, 256, -1, 170, 58, 1243};
 
     for (size_t i = 0; i < sizeof(sizes)/sizeof(sizes[0]); i++)
     {
