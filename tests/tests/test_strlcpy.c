@@ -1,7 +1,7 @@
 #include "../soft_assert.h"
 #include "libft.h"
 #include <stdio.h>
-#include <string.h>
+#include <bsd/string.h>
 int main(){
     printf("\n=====STRLCPY=====\n");
     char dst1[64], dst2[64];

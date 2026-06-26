@@ -1,6 +1,6 @@
 #include "../soft_assert.h"
 #include "libft.h"
-#include <string.h>
+#include <bsd/string.h>
 
 int main(){
     printf("\n=====STRLCAT=====\n");
