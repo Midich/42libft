@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 18:14:27 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/17 18:42:06 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/26 16:31:29 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strdup(const char *s)
 
 	i = 0;
 	new_string = malloc(s_len + 1);
+	if (!new_string)
+		return (0);
 	while (s[i])
 	{
 		new_string[i] = s[i];

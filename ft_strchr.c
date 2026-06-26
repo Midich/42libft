@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 15:48:47 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/24 17:32:06 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/26 16:30:43 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ char	*ft_strchr(const char *s, int c)
 			return (0);
 		cs++;
 	}
+	return (0);
 }
