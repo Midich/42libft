@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 16:58:53 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/26 17:35:32 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/26 18:01:57 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	const unsigned char	*char_s2 = s2;
 	int					diff;	
 
-	if (!(s1 && s2))
-			return (0);
+	if (!n || s1 == s2)
+		return (0);
 	while (n--)
 	{
 		diff = *(char_s1++) - *(char_s2++);
