@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static t_list	*map(t_list *lst, void *(*f)(void *))
 {
