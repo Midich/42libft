@@ -4,7 +4,13 @@
 Libft is a library made for 42cursus as the first project.  
 Libft goal is to reimplement a set of functions from the `libc` and add few useful ones not included in it.
 
-## Functions from libc
+<details>
+	<summary>
+		Detailed description
+	</summary>
+
+<details>
+	<summary>Functions from libc</summary>
 
 ### 1. Character handling
 | Function | Parameters | Return value | Description |
@@ -44,8 +50,11 @@ Libft goal is to reimplement a set of functions from the `libc` and add few usef
 | Function | Parameters | Return value | Description |
 | -------- | ---------- | ----------- | ----------- |
 | **int** ft_atoi(const char \***nptr**) | **nptr**: string to convert to int | int | Converts initial portion of **nptr** to int |
+</details>
 
-## Extra functions
+<details>
+	<summary>Extra functions</summary>
+
 Additional functions not found in `libc` or found in different form
 | Function | Parameters | Return value | Description |
 | -------- | ---------- | ----------- | ----------- |
@@ -61,7 +70,10 @@ Additional functions not found in `libc` or found in different form
 | **void** ft_putendl_fd(char \***s**, int **fd**) | **s**: character to output<br>**fd**: the file descriptor on which to write | | Output string **s** to the specified file descriptor followed by new line |
 | **void** ft_putnbr_fd(int **n**, int **fd**) | **n**: integer to output<br>**fd**: the file descriptor on which to write | | Output integer **n** to the specified file descriptor |
 
-## Linked List
+</details>
+
+<details>
+	<summary>Linked list</summary>
 
 List structure looks like this
 ```
@@ -84,6 +96,8 @@ where `content` is the data stored in the node, and `next` is next node in the l
 | **void** ft_lstclear(t_list \*\***lst**, void (\***del**)(void \*)) | **lst**: address to the first node to be cleared<br>**del**: function to delete content of nodes | | Deletes and frees the node and all its successor using **del** function on content of nodes |
 | **void** ft_lstiter(t_list \***lst**, void (\***f**)(void \*)) | **lst**: address to the first node of the list<br>**f**: address of function to apply on each node's content | | Iterates through list **lst** and applies the funtion **f** to the content of each node |
 | **t_list** \*ft_lstmap(t_list \***lst**, void \*(\***f**)(void \*), void (\***del**)(void \*)) | **lst**: address to the first node of the list<br>**f**: address of function to apply on each node's content<br>**del**: address of function to delete node's content if needed | New list or NULL if allocation fails | Iterates through list **lst** and applies the function **f** to the content of each node. Output of each successfull application of function **f** is then used to create the new list. If |
+</details>
+</details>
 
 # Instructions
 
@@ -124,6 +138,6 @@ To use this library you need to link it during compilation with `-L<path_to_libr
 
 # Resources
 - [Markdown Guide](https://www.markdownguide.org) for cheatsheet on how to use markdown syntax
-- [Makefile Tutorial](https://makefiletutorial.com/) for tutoral on Makefiles and
-- [GNU website](https://www.gnu.org/software/make/) for documentation
+- [Makefile Tutorial](https://makefiletutorial.com/) for tutoral on Makefiles
+- [GNU website](https://www.gnu.org/software/make/) for documentation on Makefiles
 > AI wasn't used to make this library
