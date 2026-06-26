@@ -16,7 +16,7 @@ obj_files := ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o \
 all: $(NAME)
 
 $(NAME): $(obj_files)
-	$(AR) -r $@ $?
+	$(AR) -rcs $@ $?
 
 $(obj_files):%.o:%.c
 	$(CC) -c $(CFLAGS) $^ -o $@
