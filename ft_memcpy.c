@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:53:47 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/26 14:05:18 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/26 17:37:04 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char		*cdest;
 	const unsigned char	*csrc = (unsigned char *)src;
-
+	
+	if (!(dest && src))
+		return (0);
 	cdest = (unsigned char *)dest;
 	while (n)
 	{

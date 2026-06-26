@@ -19,8 +19,8 @@ static int	ft_isspace(const char c)
 
 int	ft_atoi(const char *nptr)
 {
-	int	neg;
-	int	acc;
+	int		neg;
+	long	acc;
 
 	acc = 0;
 	neg = 1;
@@ -35,7 +35,7 @@ int	ft_atoi(const char *nptr)
 	}
 	while (*nptr && ft_isdigit(*nptr))
 	{
-		acc = (acc * 10) + ((*(nptr++) - '0') * neg);
+		acc = (acc * 10) + (*(nptr++) - '0');
 	}
-	return (acc);
+	return (acc * neg);
 }
