@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:29:53 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/23 14:43:33 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/27 16:15:15 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static t_list	*map(t_list *lst, void *(*f)(void *))
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
+	t_list	*node;
 	t_list	*new;
-	t_list	*s_new;
 	t_list	*temp;
 
 	if (!lst || !f || !del)
@@ -33,20 +33,20 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	temp = map(lst, f);
 	if (!temp)
 		return (0);
+	node = temp;
 	new = temp;
-	s_new = temp;
 	lst = lst->next;
 	while (lst)
 	{
 		temp = map(lst, f);
 		if (!temp)
 		{
-			ft_lstclear(&s_new, del);
+			ft_lstclear(&new, del);
 			return (0);
 		}
-		new->next = temp;
-		new = temp;
+		node->next = temp;
+		node = temp;
 		lst = lst->next;
 	}
-	return (s_new);
+	return (new);
 }

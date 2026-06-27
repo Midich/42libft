@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:44:59 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/18 13:53:21 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/27 15:16:10 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
-	const size_t	len = ft_strlen(s1) + ft_strlen(s2);
 	char			*new_str;
 	char			*new_str_start;
 
-	new_str = malloc(len + 1);
+	new_str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!new_str)
 		return (0);
 	new_str_start = new_str;
