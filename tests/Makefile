@@ -10,17 +10,23 @@ TESTS			:= ctype tolowerupper strlen memset bzero \
 			lstdelone lstclear lstiter lstmap
 TESTS_NOVAL		:= strncmp
 
-CFLAGS			:= -g -Wall -Wextra -Werror -Werror=vla -I$(LIBFT_PATH)
+TESTS_MALLOC	:= substr_malloc lstnew_malloc strtrim_malloc strjoin_malloc \
+				   strdup_malloc calloc_malloc
+
+CFLAGS			:= -Wall -Wextra -Werror=vla -I$(LIBFT_PATH)
 CC				:= cc
 VALGRIND		:= valgrind -q --leak-check=full
 
-all: $(TESTS) $(TESTS_NOVAL)
+all: $(TESTS) $(TESTS_NOVAL) $(TESTS_MALLOC)
 
 $(TESTS): |start
 	@$(CC) $(CFLAGS) $(UTILS) $(TESTS_PATH)/test_$@.c -L$(LIBFT_PATH) -lft -lbsd && $(VALGRIND) ./a.out && rm -f a.out
 
 $(TESTS_NOVAL): |start
 	@$(CC) $(CFLAGS) $(UTILS) $(TESTS_PATH)/test_$@.c -L$(LIBFT_PATH) -lft -lbsd && ./a.out && rm -f a.out
+
+$(TESTS_MALLOC): |start
+	@$(CC) $(CFLAGS) $(UTILS) wrapper.c -Xlinker -wrap=malloc $(TESTS_PATH)/test_$@.c -L$(LIBFT_PATH) -lft -lbsd && $(VALGRIND) ./a.out && rm -f a.out
 
 start:
 	make -C $(LIBFT_PATH)
