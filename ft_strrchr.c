@@ -6,7 +6,7 @@
 /*   By: msowinsk <msowinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 16:05:01 by msowinsk          #+#    #+#             */
-/*   Updated: 2026/06/27 15:26:08 by msowinsk         ###   ########.fr       */
+/*   Updated: 2026/06/27 16:27:33 by msowinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	const unsigned char	*p = s;
+	const unsigned char	*p = (unsigned char *)s;
 	unsigned char		cc;
 
 	cc = c;
@@ -24,7 +24,7 @@ char	*ft_strrchr(const char *s, int c)
 	{
 		if (*p == cc)
 			return ((char *)p);
-		else if (p == s)
+		else if (p == (unsigned char *)s)
 			return (0);
 		p--;
 	}
